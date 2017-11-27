@@ -23,7 +23,7 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-wrapper amber">
-          <NavLink to={this.props.auth ? '/surveys' : '/'} className="brand-logo">Logo</NavLink>
+          <NavLink to={this.props.auth ? '/surveys' : '/'} className="brand-logo">Virtual Office</NavLink>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li><NavLink to="/surveys">Dashboard</NavLink></li>
             <li><NavLink to="/surveys/new">New</NavLink></li>

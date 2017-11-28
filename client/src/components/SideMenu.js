@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchActiveMail, fetchMails } from '../actions';
+import { fetchActiveMail, fetchMails, resetMails } from '../actions';
 import Mails from '../dummyData/mails';
 
 class SideMenu extends Component {
@@ -14,11 +14,12 @@ class SideMenu extends Component {
     }
   }
 
-
   componentDidMount() {
     this.setState({
+      timeLeft: 300,
       interval: setInterval(this.tick.bind(this), 1000)
-    })
+    });
+    this.props.resetMails();
   }
 
   tick() {
@@ -74,4 +75,4 @@ const mapStateToProps = ({ activeMail, mailList }) => ({
   mailList
 })
 
-export default connect(mapStateToProps, { fetchActiveMail, fetchMails })(SideMenu);
+export default connect(mapStateToProps, { fetchActiveMail, fetchMails, resetMails })(SideMenu);

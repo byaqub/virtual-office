@@ -1,4 +1,4 @@
-import { FETCH_MAILS } from '../actions';
+import { FETCH_MAILS, DELETE_MAIL, RESET_MAILS } from '../actions';
 
 // If you want to test the functionality of the mail tool
 // and don't want to wait for the timer uncomment the import
@@ -7,13 +7,20 @@ import { FETCH_MAILS } from '../actions';
 
 const initialState = []; //const initialState = data;
 
+
 export default (state = initialState, action) => {
   switch (action.type) {
 
-  case FETCH_MAILS:
-    return [ ...state, action.payload ]
-
-  default:
-    return state
+    case FETCH_MAILS:
+      return [...state, action.payload];
+    case DELETE_MAIL:
+      let removedActiveMail = [...state];
+      let index = removedActiveMail.indexOf(action.payload);
+      removedActiveMail.splice(index, 1);
+      return removedActiveMail;
+    case RESET_MAILS:
+      return [];
+    default:
+      return state;
   }
 }

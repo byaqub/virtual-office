@@ -11,10 +11,6 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchUser } from './actions'
 
-const SurveyNew = () => <h1>SurveyNew</h1>
-const Dashboard = () => <h1>Dashboard</h1>
-
-
 class App extends Component {
 
   componentDidMount = () => {
@@ -28,8 +24,6 @@ class App extends Component {
           <div>
             <Header />
             <Switch>
-              <Route path="/surveys/new" component={SurveyNew} />
-              <Route path="/surveys" component={Dashboard} />
               <Route path="/emails" component={EmailToolPage} />
               <Route path="/admins" component={AdminPage} />
               <Route path="/" component={WelcomePage} />

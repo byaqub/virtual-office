@@ -33,10 +33,25 @@ export const fetchActiveMail = (mail) => {
   }
 }
 
+export const DELETE_MAIL = 'delete_mail';
+export const deleteMail = (activeMail) => {
+  return {
+    type: DELETE_MAIL,
+    payload: activeMail
+  }
+}
+
 export const FETCH_MAILS = 'fetch_mails';
 export const fetchMails = (mail) =>  {
   return {
     type: FETCH_MAILS,
     payload: mail
+  }
+}
+
+export const RESET_MAILS = 'reset_mails';
+export const resetMails = () => {
+  return {
+    type: RESET_MAILS
   }
 }

@@ -22,11 +22,11 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper amber">
-          <NavLink to={this.props.auth ? '/surveys' : '/'} className="brand-logo">Virtual Office</NavLink>
+        <div className="nav-wrapper green lighten-2">
+          <NavLink to={this.props.auth ? '/surveys' : '/'} className="brand-logo center">Virtual Office</NavLink>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><NavLink to="/surveys">Dashboard</NavLink></li>
-            <li><NavLink to="/surveys/new">emails</NavLink></li>
+            <li><NavLink to="/admins">Admins</NavLink></li>
+            <li><NavLink to="/emails">emails</NavLink></li>
             {this.renderContent()}
           </ul>
         </div>

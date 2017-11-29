@@ -13,10 +13,9 @@ class Content extends Component {
     }
   }
 
-
   deleteCurrentMail() {
     const mail = this.props.activeMail;
-    if (mail != null) {
+    if (mail.message) {
       this.props.deleteMail(this.props.activeMail);
     }
   }

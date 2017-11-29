@@ -12,8 +12,8 @@ class Header extends Component {
         return <li><a href="/auth/google">Log In</a></li>
       default:
         return [
-          <li key='3'><a className="btn-floating blue btn-large waves-effect waves-light red">{this.props.auth.credits}</a></li>,
-          <li key='1'><Payments /></li>,
+          // {/* <li key='3'><a className="btn-floating blue btn-large waves-effect waves-light red">{this.props.auth.credits}</a></li>, */}
+          // <li key='1'><Payments /></li>,
           <li key='2'><a href="/api/logout">Log Out</a></li>
         ]
     }

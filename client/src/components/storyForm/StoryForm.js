@@ -2,35 +2,14 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import _ from 'lodash';
 import StoryField from './StoryField';
-import StoryReview from './StoryReview';
 import { Link } from 'react-router-dom';
-
-const FIELDS = [
-  { type: "text", label: "Story title", name: "title" },
-  { type: "text", label: "Story Description", name: "description" },
-  { type: "text", label: "Story Goal", name: "goal" },
-  { type: "text", label: "Emails", name: "emails" }
-]
+import formFields from './formFields';
+import validateEmails from '../../utils/validateEmails';
 
 class StoryForm extends Component {
 
-  constructor(props) {
-    super(props)
-  
-    this.state = {
-       showReview: false
-    }
-  }
-  
-
-  switchFormOutput(){
-    this.setState({
-      showReview: this.state.showReview ? false : true
-    })
-  }
-
   renderFields() {
-    return _.map(FIELDS, ({ type, label, name }) => {
+    return _.map(formFields, ({ type, label, name }) => {
       return <Field
         key={name}
         component={StoryField}
@@ -47,11 +26,11 @@ class StoryForm extends Component {
     return (
       <div className="myRow">
         <div className="container">
-          <form style={{ marginTop: '10px' }} onSubmit={this.props.handleSubmit(values => console.log(values))}>
+          <form style={{ marginTop: '10px' }} onSubmit={this.props.handleSubmit(this.props.onStorySubmit)}>
             {this.renderFields()}
 
               <Link to="/" className="red btn-flat left white-text" type="submit">Cancel</Link>
-              <button className="teal btn-flat right white-text" onClick={this.switchFormOutput.bind(this)} type="submit">Next
+              <button className="teal btn-flat right white-text" type="submit">Next
             <i className="material-icons right">keyboard_arrow_right</i>
               </button>
 
@@ -65,7 +44,9 @@ class StoryForm extends Component {
 function validate(values) {
   const errors = {};
 
-  _.each(FIELDS, ({ name }) => {
+  errors.emails = validateEmails(values.emails || '');
+
+  _.each(formFields, ({ name }) => {
     if (!values[name]) {
       errors[name] = 'You must prove a value for ' + name;
     }
@@ -76,5 +57,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: 'storyForm'
+  form: 'storyForm',
+  destroyOnUnmount: false
 })(StoryForm);

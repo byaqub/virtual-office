@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import StoryForm from '../components/storyForm/StoryForm'
 import StoryReview from '../components/storyForm/StoryReview'
-
-import requireAuth from '../components/hocs/requireAuth';
+import { reduxForm } from 'redux-form';
 
 class DevPage extends Component {
 
@@ -27,9 +25,13 @@ class DevPage extends Component {
 
   render() {
     return (
-      <StoryForm />
+      <div>
+        {this.renderContent()}
+      </div>
     )
   }
 }
 
-export default connect(null)(requireAuth(DevPage));
+export default reduxForm({
+  form: 'storyForm'
+})(DevPage);

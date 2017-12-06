@@ -51,9 +51,9 @@ class StoryForm extends Component {
             {this.renderFields()}
 
               <Link to="/" className="red btn-flat left white-text" type="submit">Cancel</Link>
-              <Link to="/" className="teal btn-flat right white-text" onClick={this.showReview.bind(this)} type="submit">Next
+              <button className="teal btn-flat right white-text" onClick={this.switchFormOutput.bind(this)} type="submit">Next
             <i className="material-icons right">keyboard_arrow_right</i>
-              </Link>
+              </button>
 
           </form>
         </div>

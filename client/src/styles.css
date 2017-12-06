@@ -120,3 +120,13 @@ p{
 .btn {
   margin-right: 15px;
 }
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+form > div {
+  flex: 0 0 48%;
+}

@@ -5,11 +5,13 @@ import React, { Component } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import WelcomePage from './pages/WelcomePage'
-import AdminPage from './pages/AdminsPage'
+import DevPage from './pages/DevPage'
 import EmailToolPage from './pages/EmailToolPage'
+import FixedActionButton from './components/FixedActionButton';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchUser } from './actions'
+import requireAuth from './components/hocs/requireAuth';
 
 class App extends Component {
 
@@ -19,22 +21,25 @@ class App extends Component {
 
   render() {
     return (
-      <div>
         <Router>
           <div>
             <Header />
             <Switch>
-              <Route path="/emails" component={EmailToolPage} />
-              <Route path="/admins" component={AdminPage} />
+              <Route path="/emails" component={requireAuth(EmailToolPage)} />
+              <Route path="/dev" component={DevPage} />
               <Route path="/" component={WelcomePage} />
             </Switch>
+            {this.props.auth &&
+              <FixedActionButton />}
             <Footer />
           </div>
         </Router>
-      </div>
     )
   }
 }
 
+const mapStateToProps = ({ auth }) => ({
+  auth
+})
 
-export default connect(null, { fetchUser })(App)
+export default connect(mapStateToProps, { fetchUser })(App)

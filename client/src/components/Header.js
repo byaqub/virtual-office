@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Payments from './Payments'
 
 class Header extends Component {
   renderContent() {
@@ -11,11 +10,7 @@ class Header extends Component {
       case false:
         return <li><a href="/auth/google">Log In</a></li>
       default:
-        return [
-          <li key='3'><a className="btn-floating blue btn-large waves-effect waves-light red">{this.props.auth.credits}</a></li>,
-          <li key='1'><Payments /></li>,
-          <li key='2'><a href="/api/logout">Log Out</a></li>
-        ]
+        return <li><a href="/api/logout">Log Out</a></li>
     }
   }
 
@@ -25,7 +20,7 @@ class Header extends Component {
         <div className="nav-wrapper green lighten-2">
           <NavLink to={this.props.auth ? '/surveys' : '/'} className="brand-logo center">Virtual Office</NavLink>
           <ul id="nav-mobile" className="right hide-on-med-and-down">
-            <li><NavLink to="/admins">Admins</NavLink></li>
+            <li><NavLink to="/dev">Dev</NavLink></li>
             <li><NavLink to="/emails">emails</NavLink></li>
             {this.renderContent()}
           </ul>
